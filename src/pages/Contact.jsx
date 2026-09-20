@@ -24,6 +24,7 @@ export default function Contact() {
 
     setStatus('sending')
 
+    // EmailJS handles delivery while the local status controls button feedback.
     try {
       await emailjs.sendForm(
         'YOUR_SERVICE_ID',

@@ -11,6 +11,7 @@ export default function Cursor() {
   const springY = useSpring(y, { stiffness: 420, damping: 30 })
 
   useEffect(() => {
+    // Track the pointer once and drive both the cursor and background glow from it.
     const move = (e) => {
       x.set(e.clientX - 8)
       y.set(e.clientY - 8)

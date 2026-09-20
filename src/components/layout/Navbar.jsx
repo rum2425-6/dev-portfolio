@@ -4,6 +4,7 @@ import { AnimatePresence, motion } from 'framer-motion'
 import { HiMenuAlt3, HiX } from 'react-icons/hi'
 import { profile } from '../../data/portfolio'
 
+// Central route list keeps desktop and mobile navigation in sync.
 const routes = [
   { label: 'Home', path: '/' },
   { label: 'About', path: '/about' },
@@ -20,6 +21,7 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
 
   useEffect(() => {
+    // Add the compact navbar state after the page has been scrolled.
     const onScroll = () => setScrolled(window.scrollY > 40)
 
     window.addEventListener('scroll', onScroll)
@@ -55,6 +57,7 @@ export default function Navbar() {
           ))}
         </ul>
 
+        {/* Uses the profile email so the contact link stays current with the data file. */}
         <a
           href={`mailto:${profile.email}`}
           className="hidden rounded-full bg-gradient-to-r from-indigo-500 via-purple-500 to-cyan-400 px-5 py-2.5 text-sm font-semibold text-white shadow-lg shadow-indigo-500/20 transition hover:shadow-cyan-400/30 lg:inline-flex"

@@ -1,5 +1,6 @@
 import { useEffect, useRef } from 'react'
 
+// Short technology labels used as the content of the canvas animation.
 const snippets = [
   'React',
   'Node.js',
@@ -24,6 +25,7 @@ export default function CodeRain({ opacity = 0.12, speed = 0.45, fontSize = 18 }
   const canvasRef = useRef(null)
 
   useEffect(() => {
+    // Skip the canvas animation when reduced motion is enabled.
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
 
     if (prefersReducedMotion) return
@@ -41,6 +43,7 @@ export default function CodeRain({ opacity = 0.12, speed = 0.45, fontSize = 18 }
     let columns = Math.floor(width / fontSize)
     let drops = Array(columns).fill(1)
 
+    // Draw one frame, then schedule the next frame with requestAnimationFrame.
     const draw = () => {
       ctx.fillStyle = 'rgba(3, 0, 20, 0.08)'
       ctx.fillRect(0, 0, width, height)

@@ -15,6 +15,7 @@ function ProjectCard({ project }) {
 
     const rect = ref.current.getBoundingClientRect()
 
+    // Convert the pointer position into a small 3D tilt around the card center.
     const x = (e.clientX - rect.left) / rect.width - 0.5
     const y = (e.clientY - rect.top) / rect.height - 0.5
 
@@ -116,6 +117,7 @@ export default function Projects() {
           description="Projects developed through academic and personal learning with focus on responsive UI, practical features, and clean development."
         />
 
+        {/* The card component stays reusable as the project data list grows. */}
         <div className="grid grid-cols-1 items-stretch gap-6 md:grid-cols-2 lg:gap-8">
           {projects.map((project) => (
             <ProjectCard key={project.title} project={project} />

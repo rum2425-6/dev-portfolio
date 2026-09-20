@@ -1,8 +1,8 @@
 import { motion, useInView, animate } from 'framer-motion'
 import { useRef, useEffect, useState } from 'react'
-import { FaGraduationCap, FaBriefcase, FaCode, FaRocket } from 'react-icons/fa'
+import { FaGraduationCap, FaBriefcase, FaCode } from 'react-icons/fa'
 
-/* ---- Animated Counter ---- */
+/* Animated counter reveals each summary value when it enters the viewport. */
 function Counter({ to, suffix = '+' }) {
   const ref = useRef(null)
   const inView = useInView(ref, { once: true })
@@ -16,17 +16,19 @@ function Counter({ to, suffix = '+' }) {
 }
 
 const stats = [
-  { label: 'Projects Completed', value: 15 },
-  { label: 'Technologies Learned', value: 12 },
-  { label: 'Certificates Earned', value: 8 },
+  // High-level profile numbers shown at the top of the About page.
+  { label: 'Projects Completed', value: 3 },
+  { label: 'Technical Skills', value: 25 },
+  { label: 'Certificates Earned', value: 4 },
   { label: 'Months of Internship', value: 6 },
 ]
 
 const journey = [
-  { year: '2021', icon: <FaCode />, title: 'The Spark', desc: 'Wrote my first "Hello World" in C. Fell in love with problem solving.' },
-  { year: '2022', icon: <FaGraduationCap />, title: 'Web Foundations', desc: 'Mastered HTML, CSS, JavaScript. Built my first responsive websites.' },
-  { year: '2023', icon: <FaRocket />, title: 'MERN Deep Dive', desc: 'Learned React, Node.js, Express & MongoDB. Shipped 10+ full-stack projects.' },
-  { year: '2024', icon: <FaBriefcase />, title: 'Professional Debut', desc: 'Software Developer Intern — building production features for real users.' },
+  // Resume milestones displayed as the education and internship timeline.
+  { year: '2020 – 2022', icon: <FaGraduationCap />, title: 'Secondary Education', desc: 'Completed Secondary (CBSE) at Ambition Convent School in Ballia, India.' },
+  { year: '2022 – 2024', icon: <FaGraduationCap />, title: 'Senior Secondary Education', desc: 'Completed Senior Secondary (CBSE) at K.R. Education Centre in Kanpur, India.' },
+  { year: 'Aug 2024 – Pursuing', icon: <FaCode />, title: 'B.Tech in Computer Science', desc: 'Pursuing Bachelor of Technology (Computer Science & Engineering) at Rama University in Kanpur, India.' },
+  { year: 'Aug 2025 – Jan 2026', icon: <FaBriefcase />, title: 'Software Developer Intern', desc: 'Developed a Recruitment Management System at RCS Global Limited.' },
 ]
 
 export default function About() {
@@ -37,7 +39,7 @@ export default function About() {
         About <span className="gradient-text">Me</span>
       </motion.h1>
       <p className="text-center text-slate-400 mt-4 max-w-2xl mx-auto">
-        From curious beginner to full-stack developer — here's my story.
+        Computer Science student passionate about building practical web applications and AI-powered solutions.
       </p>
 
       {/* Stats */}

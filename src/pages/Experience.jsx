@@ -19,6 +19,7 @@ export default function Experience() {
 
         <div className="mx-auto max-w-4xl">
           <div className="relative border-l border-indigo-400/30 pl-8">
+            {/* Experience entries are kept in the shared portfolio data file. */}
             {experience.map((item) => (
               <div key={item.company} className="gsap-reveal relative mb-10">
                 <div className="absolute -left-[49px] top-1 grid h-9 w-9 place-items-center rounded-full bg-gradient-to-r from-indigo-500 to-cyan-400 shadow-lg shadow-cyan-400/20">

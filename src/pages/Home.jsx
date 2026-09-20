@@ -11,6 +11,7 @@ import useTyping from "../hooks/useTyping";
 import profileImage from "../assets/profile.jpg";
 
 const roles = [
+  // These labels are rotated by useTyping in the hero section.
   "Full Stack Developer",
   "MERN Stack Developer",
   "React Developer",
@@ -83,6 +84,7 @@ export default function Home() {
                 </Link>
               </div>
 
+              {/* Social links come from the shared profile data so they stay consistent site-wide. */}
               <div className="mt-8 flex items-center justify-center gap-4 lg:justify-start">
                 <a
                   href={profile.github}
@@ -146,6 +148,7 @@ export default function Home() {
             </motion.div>
           </div>
 
+          {/* Summary cards use the same stats data as the rest of the portfolio. */}
           <div className="mt-20 grid grid-cols-2 gap-4 md:grid-cols-4">
             {stats.map((item) => (
               <div

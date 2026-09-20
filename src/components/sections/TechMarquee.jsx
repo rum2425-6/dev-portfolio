@@ -15,6 +15,7 @@ import {
   SiTailwindcss,
 } from "react-icons/si";
 
+// Technologies repeated below to create a seamless scrolling marquee.
 const techs = [
   { name: "HTML5", icon: <SiHtml5 /> },
   { name: "CSS3", icon: <FaCss3Alt /> },
@@ -33,6 +34,7 @@ const techs = [
 ];
 
 export default function TechMarquee() {
+  // Duplicating the list lets the animation loop without an empty gap.
   const list = [...techs, ...techs];
 
   return (

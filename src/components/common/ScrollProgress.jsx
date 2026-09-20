@@ -3,6 +3,7 @@ import { motion, useScroll, useSpring } from 'framer-motion'
 export default function ScrollProgress() {
   const { scrollYProgress } = useScroll()
 
+  // Spring smoothing prevents the progress bar from jumping during scrolling.
   const scaleX = useSpring(scrollYProgress, {
     stiffness: 120,
     damping: 30,

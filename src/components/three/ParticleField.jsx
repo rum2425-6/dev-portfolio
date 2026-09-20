@@ -5,6 +5,7 @@ import { Suspense, useMemo, useRef } from 'react'
 function Particles() {
   const ref = useRef()
 
+  // Generate the particle positions once so animation frames do not recreate them.
   const positions = useMemo(() => {
     const array = new Float32Array(3200 * 3)
 
@@ -18,6 +19,7 @@ function Particles() {
   useFrame((_, delta) => {
     if (!ref.current) return
 
+    // Delta-based rotation keeps the scene speed consistent across frame rates.
     ref.current.rotation.x -= delta / 25
     ref.current.rotation.y -= delta / 30
   })

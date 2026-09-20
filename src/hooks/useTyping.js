@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 
+// Types each word, pauses at the end, then deletes it before moving to the next word.
 export default function useTyping(words, speed = 85, pause = 1400) {
   const [text, setText] = useState('')
   const [wordIndex, setWordIndex] = useState(0)
@@ -8,6 +9,7 @@ export default function useTyping(words, speed = 85, pause = 1400) {
   useEffect(() => {
     const current = words[wordIndex % words.length]
 
+    // A timeout gives typing and deleting different speeds without blocking rendering.
     const timer = setTimeout(
       () => {
         if (!deleting) {

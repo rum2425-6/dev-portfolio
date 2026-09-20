@@ -10,6 +10,7 @@ import Navbar from './components/layout/Navbar'
 import PageTransition from './components/layout/PageTransition'
 import CodeRain from './components/three/CodeRain'
 
+// Lazy-loading keeps each page out of the initial bundle until the user visits it.
 const Home = lazy(() => import('./pages/Home'))
 const About = lazy(() => import('./pages/About'))
 const Skills = lazy(() => import('./pages/Skills'))
@@ -22,6 +23,7 @@ const Contact = lazy(() => import('./pages/Contact'))
 function AnimatedRoutes() {
   const location = useLocation()
 
+  // Start each route at the top while preserving the existing page transition.
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' })
   }, [location.pathname])
@@ -49,12 +51,14 @@ export default function App() {
 
   return (
     <BrowserRouter>
+      {/* The loader stays mounted until its own animation reports completion. */}
       <AnimatePresence>
         {loading && <Loader onComplete={() => setLoading(false)} />}
       </AnimatePresence>
 
       {!loading && (
         <>
+          {/* These shared visual layers appear behind every routed page. */}
           <div className="noise" />
 
           <CodeRain />

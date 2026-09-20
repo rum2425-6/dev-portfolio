@@ -1,3 +1,4 @@
+// Shared width and horizontal padding keep page content aligned across routes.
 export default function Container({ children, className = '' }) {
   return (
     <div className={`mx-auto w-full max-w-7xl px-5 sm:px-6 lg:px-8 ${className}`}>

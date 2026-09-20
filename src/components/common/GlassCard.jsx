@@ -1,3 +1,4 @@
+// Reusable card surface that applies the portfolio's glass and hover treatment.
 export default function GlassCard({ children, className = '' }) {
   return (
     <div

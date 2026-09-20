@@ -17,6 +17,7 @@ export default function Skills() {
           description="Technologies and tools I use to build responsive, scalable, and user-friendly web applications."
         />
 
+        {/* Each category renders its skills and the percentage used by its progress bar. */}
         <div className="grid grid-cols-1 gap-6 lg:grid-cols-2 lg:gap-8">
           {skills.map((category) => (
             <GlassCard key={category.title} className="gsap-reveal h-full p-7 md:p-8">

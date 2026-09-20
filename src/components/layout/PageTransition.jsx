@@ -9,6 +9,7 @@ export default function PageTransition({ children }) {
   const ref = useRef(null)
 
   useEffect(() => {
+    // Animate each marked element when it enters the viewport.
     const ctx = gsap.context(() => {
       gsap.utils.toArray('.gsap-reveal').forEach((el) => {
         gsap.fromTo(

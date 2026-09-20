@@ -5,6 +5,7 @@ export default function Loader({ onComplete }) {
   const [progress, setProgress] = useState(0)
 
   useEffect(() => {
+    // Simulate startup progress and notify App when the intro screen can close.
     const interval = setInterval(() => {
       setProgress((prev) => {
         if (prev >= 100) {

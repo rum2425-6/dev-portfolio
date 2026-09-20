@@ -28,6 +28,7 @@ export default function Resume() {
           </GlassCard>
 
           <div className="mt-8 flex flex-col justify-center gap-4 sm:flex-row">
+            {/* Both actions use the same PDF path from the profile data. */}
             <a
               href={profile.resume}
               download

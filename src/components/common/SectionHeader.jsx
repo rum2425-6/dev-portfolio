@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion'
 
+// Standard heading block shared by the main portfolio sections.
 export default function SectionHeader({
   badge,
   title,
@@ -9,6 +10,7 @@ export default function SectionHeader({
 }) {
   const isLeft = align === 'left'
 
+  // The alignment option supports both centered and left-aligned section intros.
   return (
     <motion.div
       initial={{ opacity: 0, y: 28 }}

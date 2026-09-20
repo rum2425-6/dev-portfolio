@@ -12,14 +12,15 @@ export default function Footer() {
           </Link>
 
           <p className="mt-4 max-w-sm text-sm leading-7 text-slate-400">
-            Software Engineer and MERN Stack Developer focused on building clean,
-            scalable, responsive, and user-friendly web applications.
+            Computer Science student focused on building practical web applications
+            and AI-powered solutions.
           </p>
         </div>
 
         <div>
           <h3 className="font-display text-lg font-semibold text-white">Quick Links</h3>
 
+          {/* These links mirror the main destinations without duplicating route markup. */}
           <div className="mt-4 grid grid-cols-2 gap-3 text-sm text-slate-400">
             {['Home', 'About', 'Skills', 'Projects', 'Resume', 'Contact'].map((item) => (
               <Link
@@ -48,6 +49,7 @@ export default function Footer() {
             </p>
           </div>
 
+          {/* Social links reuse the same profile URLs shown in the contact section. */}
           <div className="mt-5 flex gap-3">
             <a
               href={profile.github}
