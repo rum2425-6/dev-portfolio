@@ -1,6 +1,14 @@
+import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { FaArrowRight, FaDownload, FaGithub, FaLinkedin } from "react-icons/fa";
+import {
+  FaArrowRight,
+  FaDownload,
+  FaGithub,
+  FaLinkedin,
+  FaPlay,
+  FaTimes,
+} from "react-icons/fa";
 
 import Container from "../components/common/Container";
 import MagneticButton from "../components/common/MagneticButton";
@@ -20,8 +28,41 @@ const roles = [
 
 export default function Home() {
   const typed = useTyping(roles);
+  const [isVideoOpen, setIsVideoOpen] = useState(false);
+  const videoRef = useRef(null);
 
-  console.log(profileImage);
+  useEffect(() => {
+    if (isVideoOpen) {
+      document.body.style.overflow = "hidden";
+      videoRef.current?.play();
+    } else {
+      document.body.style.overflow = "";
+
+      if (videoRef.current) {
+        videoRef.current.pause();
+        videoRef.current.currentTime = 0;
+      }
+    }
+
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isVideoOpen]);
+
+  useEffect(() => {
+    if (!isVideoOpen) return undefined;
+
+    const handleKeyDown = (event) => {
+      if (event.key === "Escape") {
+        setIsVideoOpen(false);
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [isVideoOpen]);
+
   return (
     <>
       <section className="relative flex min-h-screen items-center overflow-hidden pb-16 pt-28">
@@ -82,6 +123,16 @@ export default function Home() {
                     </span>
                   </MagneticButton>
                 </Link>
+
+                <MagneticButton
+                  type="button"
+                  onClick={() => setIsVideoOpen(true)}
+                  aria-label="Watch my 15-second portfolio introduction"
+                  className="inline-flex w-full items-center justify-center gap-2 rounded-full border border-cyan-400/30 bg-cyan-400/10 px-7 py-3.5 text-sm font-semibold text-cyan-200 transition hover:border-cyan-300/60 hover:bg-cyan-400/20 sm:w-auto"
+                >
+                  <FaPlay className="text-xs" />
+                  Watch My 15-Second Intro
+                </MagneticButton>
               </div>
 
               {/* Social links come from the shared profile data so they stay consistent site-wide. */}
@@ -181,6 +232,45 @@ export default function Home() {
       </section>
 
       <TechMarquee />
+
+      {isVideoOpen && (
+        <div
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="portfolio-video-title"
+          onClick={() => setIsVideoOpen(false)}
+          className="fixed inset-0 z-[200] flex items-center justify-center bg-dark/90 p-4 backdrop-blur-xl sm:p-8"
+        >
+          <div
+            onClick={(event) => event.stopPropagation()}
+            className="relative w-full max-w-4xl overflow-hidden rounded-2xl border border-white/10 bg-dark-soft shadow-2xl shadow-cyan-400/10"
+          >
+            <h2 id="portfolio-video-title" className="sr-only">
+              Sumit Kumar Gupta portfolio introduction
+            </h2>
+
+            <video
+              ref={videoRef}
+              src="/portfolio-reel.mp4"
+              autoPlay
+              muted
+              controls
+              playsInline
+              preload="metadata"
+              className="block max-h-[calc(100vh-2rem)] w-full object-contain sm:max-h-[calc(100vh-4rem)]"
+            />
+
+            <button
+              type="button"
+              onClick={() => setIsVideoOpen(false)}
+              aria-label="Close portfolio introduction video"
+              className="absolute right-3 top-3 grid h-10 w-10 place-items-center rounded-full border border-white/20 bg-dark/80 text-white transition hover:border-cyan-300 hover:text-cyan-300"
+            >
+              <FaTimes />
+            </button>
+          </div>
+        </div>
+      )}
     </>
   );
 }
